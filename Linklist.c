@@ -21,6 +21,26 @@ void create_node()
     num++;
 }
 
+ void delete_first()
+{
+    if(start==NULL)
+    {
+        printf("No element to delete");
+    }
+    else
+    {
+        temp=start;
+        start=start->next;
+        free(temp);
+        temp = NULL;
+        count--;
+    }
+    if(start==NULL)
+    {
+        last = NULL;
+    }
+}
+
 void create_list()
 {
     int i,n;
