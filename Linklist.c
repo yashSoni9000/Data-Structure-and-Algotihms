@@ -191,3 +191,59 @@ int main()
     
     return 0;
 }
+
+
+
+
+# added by jash hinger
+
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct linknode
+{
+    int data;
+    struct linknode *next; //pointer variable of struct linknode type.
+} node;
+// declaring pointer variable having by-default value NULL.
+node *start, *last, *temp;
+
+//defining create_node function
+void create_node()
+{
+    temp = (node *)malloc(sizeof(node));
+    printf("\n <-----Enter new values--->\n");
+    scanf("%d", &temp->data);
+    temp->next = NULL;
+}
+int main()
+{
+    int n;
+    printf("Enter how many values u want to enter:\n");
+    scanf("%d", &n); // no of nodes we want to create.
+    for (int i = 1; i <= n; i++)
+    {
+        create_node();
+        // if start == null, means first time we have assign values in temp and now we will set start to temp and last to temp.
+        if (start == NULL)
+        {
+            start = temp;
+            last = temp;
+        }
+        else
+        {
+            last->next = temp;
+            last = temp;
+        }
+    }
+    //now we will start traversing from start till temp not reach null.
+    temp = start;
+    printf("The values are:\n");
+    while (temp != NULL)
+    {
+        printf("%d", temp->data);
+        temp = temp->next;
+        printf("\n");
+    }
+    return 0;
+}
