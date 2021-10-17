@@ -1,249 +1,220 @@
 #include<stdio.h>
-#include<process.h>
 #include<stdlib.h>
-int num;
-typedef struct employee{
-    /* data */
-    int data;
-    struct employee *next;
-    
-}emp;
-
-emp *last,*start,*temp;
-
-void create_node()
+void create ();	
+void display();	
+void insertbeg();
+void insrtend();
+void count();
+void delbeg();
+void delend();
+void posdel();
+void posinsrt();
+struct node
 {
-    int no;
-    temp=(emp*)malloc(sizeof(emp));
-    printf("Enter Details : ");
-    scanf("%d",&temp->data);
-    temp->next=NULL;
-    num++;
+	int data;
+	struct node *next;
+};
+struct node *head=0,*temp,*newnode,*pre,*nextnode,*current;
+								
+void create()//--------------------------------------------//create funct 
+{
+	
+	int size,i,a=1;
+	printf("enter your size");
+	printf("\n");
+	scanf("%d",&size);
+	printf("enter your data\n");
+	printf("\n");
+		for (i=0;i<=size-1;i++)
+		{
+				newnode=(struct node*)malloc(sizeof(struct node));
+				scanf("%d",&newnode->data);
+				newnode->next=0;
+				if (head==0)
+					head=temp=newnode;
+				else
+				{
+					temp->next=newnode;
+					temp=newnode;
+				}
+		}
+	printf("success full implementation\n");
 }
 
- void delete_first()
+void display()//------------------------------------------//display funct 
 {
-    if(start==NULL)
-    {
-        printf("No element to delete");
-    }
-    else
-    {
-        temp=start;
-        start=start->next;
-        free(temp);
-        temp = NULL;
-        count--;
-    }
-    if(start==NULL)
-    {
-        last = NULL;
-    }
+	if(head==0)
+	{
+		printf("empty linked list\n");
+	}
+	else 
+	{
+	
+	temp = head ;
+	printf("your data are \n");
+	while (temp!=0)
+		{
+			printf("%d\t",temp->data);
+			temp=temp->next;
+		}
+	}
+}
+void insertbeg()//----------------------------------------//insert at beg
+{
+	if (head==0)
+	{
+		printf("empty linked list\n");
+	}
+	
+	else
+	{
+		newnode=(struct node*)malloc(sizeof(struct node));
+		printf("enter your data\n");
+		scanf("%d",&newnode->data);
+		newnode->next=head;
+		head=newnode;
+	}
+	if (newnode==head)
+	{
+		printf("successful\n");
+	}
+	else
+	{
+		printf("failure\n");
+	}
+
 }
 
-void create_list()
+void insrtend()//------------------------------------------//insert at end 
 {
-    int i,n;
-    printf("Heyy, Bro its just linkedlist \n Enter value of n : ");
-    scanf("%d",&n);
+	if(head==0)
+	printf("list is empty\n");
+	else
+	{
+		temp=head;
+		while(temp->next!=0)
+		{
+			temp=temp->next;
+		}
+		newnode=(struct node*)malloc(sizeof(struct node));
+		printf("enter your data\n");
+		scanf("%d",&newnode->data);
+		newnode->next=0;
+		temp->next=newnode;	
+	}
+}
+void delbeg ()//----------------------------------------- //del from begining
+{
+	temp=head;
+	head=head->next;
+	free(temp);
+	printf("successfully deleted\n");
+}
 
-    for ( i=1; i<=n; i++)
+void delend()  //-------------------------------------------- //DELETE END 
+{
+    temp=head;
+    while (temp->next!=0)
     {
-        /* code */
-        create_node();
-        if(start == NULL)
+        pre=temp;
+        temp=temp->next;
+    }
+    pre->next=0;
+    free(temp);
+}
+
+void exit (int);
+
+void count()//------------------------------------------------------  //count
+{
+    int c=0;
+    temp=head;
+    while(temp!=0)
+    {
+        temp=temp->next;
+        c++;
+    }
+    printf("number of elements in list so far is %d\n",c);
+}
+void posdel()//------------------------------------------------//position delete 
+{
+    int pos,i;
+    printf("enter your position which elemnet you want to delete\n");
+    scanf("%d",&pos);
+    if (head==0)
+    printf("your list is empty");
+    else if (pos==1)
+    delbeg();
+    else 
+    {
+        temp=head;
+        while (i<pos-1)
         {
-            start = temp;
-            last = temp; 
+           temp=temp->next;
+           i++;
         }
-        else
-        {
-            last->next = temp;
-            last = temp;
-        }
+    nextnode=temp->next;
+    temp->next=nextnode->next;
+    free(nextnode);
     }
 
 }
-
-void insertionLast()
+void posinsrt()
 {
-    create_node();
-    if(start==NULL)
-    {
-        start=temp;
-        last=temp;
-    }
-    else
-    {
-        last->next=temp;
-        last = temp;
-    }
+	int i=1,pos; 
+	if (head==0)
+	printf("empty list");
+	else
+	{
+		printf("enter your position");
+		scanf("%d",&pos);
+		if (pos==1)
+		{
+			insertbeg();
+		}
+		temp=head;
+		while(i<pos)
+		{
+			temp=temp->next;
+			i++;
+		}
+		newnode=(struct node*)malloc(sizeof(struct node));
+		scanf("%d",&newnode->data);
+		newnode->next=temp->next;
+		temp->next=newnode;
+	}
 }
-
-void insertion_first()
+void main()//--------------------------------------------------//main funct
 {
-    create_node();
-    if (start == NULL)
-    {
-        start = temp;
-        last = temp;
-    }
-    else
-    {
-        temp->next = start;
-        start = temp;
-    }
-}
-
-void display()
-{
-    temp = start;
-    while (temp !=  NULL)
-    {
-        /* code */
-        printf("%d \n",temp->data);
-        temp = temp->next;
-    }
-
-}
-
-
-void insertionMid()
-{
-    int pos;
-    create_node();
-    if(start==NULL)
-    {
-        start=temp;
-        last=temp;
-    }
-    else
-    {
-        printf("Enter Postion for new value : ");
-        scanf("%d",&pos);
-        if(num<pos)
-        {
-            printf("NOT POSSIBLE ");
-        }
-        else
-        {
-            if(pos==num)
-            {
-                last->next=temp;
-                last=temp;
-            }
-            else
-            {
-                emp *p,*q;
-                p=start;
-                for(int i=1;i<pos-1;i++)
-                    p=p->next;
-                temp->next=p->next;
-                p->next=temp;
-            }
-        }
-    }
-}
-
-int main()
-{
-    int k;
-    printf("---------Heyy Bro---------\n Enter number acoooring to your mind : \n   ");
-    
-    while (1)
-    {
-        printf("1) Create Linked Listn \n 2) Insertion at First \n 3)Insertion at Mid Postion \n 4) Insertion at Last Postion \n5) Display Linked List \n6) Exit : \n");
-        scanf("%d",&k);
-        /* code */
-
-        switch (k)
-    {
-    case 1:
-            create_list();
-        break;
-
-    case 2:
-            insertion_first();
-            break;
-
-    case 3: 
-            insertionMid();
-        break;
-
-    case 4:
-            insertionLast();
-        break;
-
-    case 5:
-            display();
-            break;
-    case 6: exit(0);
-    break;
-    
-    default:
-    printf("Error");
-        break;
-    }
-    }
-    
-    
-    
-    
-    return 0;
-}
-
-
-
-
-# added by jash hinger
-
-
-#include <stdio.h>
-#include <stdlib.h>
-typedef struct linknode
-{
-    int data;
-    struct linknode *next; //pointer variable of struct linknode type.
-} node;
-// declaring pointer variable having by-default value NULL.
-node *start, *last, *temp;
-
-//defining create_node function
-void create_node()
-{
-    temp = (node *)malloc(sizeof(node));
-    printf("\n <-----Enter new values--->\n");
-    scanf("%d", &temp->data);
-    temp->next = NULL;
-}
-int main()
-{
-    int n;
-    printf("Enter how many values u want to enter:\n");
-    scanf("%d", &n); // no of nodes we want to create.
-    for (int i = 1; i <= n; i++)
-    {
-        create_node();
-        // if start == null, means first time we have assign values in temp and now we will set start to temp and last to temp.
-        if (start == NULL)
-        {
-            start = temp;
-            last = temp;
-        }
-        else
-        {
-            last->next = temp;
-            last = temp;
-        }
-    }
-    //now we will start traversing from start till temp not reach null.
-    temp = start;
-    printf("The values are:\n");
-    while (temp != NULL)
-    {
-        printf("%d", temp->data);
-        temp = temp->next;
-        printf("\n");
-    }
-    return 0;
+	int a;
+	do
+	{
+		printf("what you want\ncase 1 :create()\ncase 2 :display()\ncase 3:insertbeg()\ncase 4:delbeg()\ncase 5:insrtend()\ncase 6: count()\ncase 7:delend()\ncase 8:posdel()\ncase 9:posinsrt()\n");	
+		printf("if you want to stop the progrsm you can press '0' \n thank you \n");		
+		scanf("%d",&a);
+		switch(a)
+		{
+			case 1:create();
+			break;
+			case 2:display();
+			break;
+			case 3:insertbeg();
+			break;
+			case 4:delbeg();
+			break;
+			case 5:insrtend();
+			break;
+			case 6:count();
+			break;
+			case 7:delend();
+			break;
+			case 8:posdel();
+			break;
+			case 0:exit(0);
+			break;
+			case 9:posinsrt();
+			break;
+			default:printf("enter vaild no\n");
+		}
+	}while(a!=0);	
 }
