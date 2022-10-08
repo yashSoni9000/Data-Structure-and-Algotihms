@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
     while (1)
     {
         int n;
-        printf("Enter a number: \n1->Normal Link List\n2-> Insertion At First\n3-> Insertion At Mid\n4->Insertion At Last\n5-> Deletion At First\n6-> Deletion At Mid\n7-> Deletion At Last\n8-> Display Numbers\n9->Exit The Program\n");
+        printf("Enter a number: \n 1->Normal Link List\n 2-> Insertion At First\n 3-> Insertion At Mid\n 4->Insertion At Last\n 5-> Deletion At First\n 6-> Deletion At Mid\n 7-> Deletion At Last\n 8-> Display Numbers\n 9->Out from the programe\n");
         scanf("%d", &n);
         /* code */
         switch (n)
