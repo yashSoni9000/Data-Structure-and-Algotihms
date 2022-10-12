@@ -1,6 +1,6 @@
 # Linkedlist_in_c
 
-Hacktober fest 2021
+Hacktober fest 2022
 
 To do :Insertion in linked list
 
