@@ -2,7 +2,7 @@
 
 Hacktober fest 2022
 
-To do :Insertion in linked list
+To do :Add any hand codded code related to DSA to this repository
 
 ## Details in _linkedlist.c_
 
