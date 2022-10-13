@@ -1,4 +1,4 @@
-# Linkedlist_in_c
+# DSA
 
 Hacktober fest 2022
 
