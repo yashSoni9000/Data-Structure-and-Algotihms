@@ -63,7 +63,7 @@ void polyMult(struct node* head1,struct node* head2)
   //check if first or second polynomial is null
   if(head1==NULL || head2==NULL )
   {
-      printf("Zero Polynomial");
+      printf("(0)Zero Polynomial");
       return;
   }
   //Multiplication of two polynomial
